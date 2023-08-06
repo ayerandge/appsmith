@@ -67,21 +67,21 @@ export const contentConfig = [
           },
         },
       },
-      {
-        helpText: "Configure a custom EChart dataset",
-        placeholderText: `Custom ECharts Dataset`,
-        propertyName: "customEChartDataset",
-        label: "Custom ECharts Datasource",
-        controlType: "INPUT_TEXT",
-        isBindProperty: true,
-        isTriggerProperty: false,
-        validation: {
-          type: ValidationTypes.OBJECT,
-        },
-        hidden: (props: ChartWidgetProps) =>
-          props.chartType !== "CUSTOM_ECHART",
-        dependencies: ["chartType"],
-      },
+      // {
+      //   helpText: "Configure a custom EChart dataset",
+      //   placeholderText: `Custom ECharts Dataset`,
+      //   propertyName: "customEChartDataset",
+      //   label: "Custom ECharts Datasource",
+      //   controlType: "INPUT_TEXT",
+      //   isBindProperty: true,
+      //   isTriggerProperty: false,
+      //   validation: {
+      //     type: ValidationTypes.OBJECT,
+      //   },
+      //   hidden: (props: ChartWidgetProps) =>
+      //     props.chartType !== "CUSTOM_ECHART",
+      //   dependencies: ["chartType"],
+      // },
       {
         helpText: "Configure a custom ECHART see docs.appsmith.com",
         placeholderText: `Custom ECharts Configuration`,

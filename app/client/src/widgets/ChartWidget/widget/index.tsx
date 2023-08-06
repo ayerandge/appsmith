@@ -128,7 +128,7 @@ class ChartWidget extends BaseWidget<ChartWidgetProps, WidgetState> {
               chartName={this.props.chartName}
               chartType={this.props.chartType}
               customEChartConfig={this.props.customEChartConfig}
-              customEChartDataset={this.props.customEChartDataset}
+              // customEChartDataset={this.props.customEChartDataset}
               customFusionChartConfig={this.props.customFusionChartConfig}
               dimensions={this.getComponentDimensions()}
               fontFamily={this.props.fontFamily ?? "Nunito Sans"}

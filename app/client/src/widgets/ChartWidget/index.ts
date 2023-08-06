@@ -3,7 +3,7 @@ import { ResponsiveBehavior } from "utils/autoLayout/constants";
 import { generateReactKey } from "widgets/WidgetUtils";
 import {
   DefaultEChartConfig,
-  DefaultEChartDatasource,
+  // DefaultEChartDatasource,
   DefaultEChartsBasicChartsData,
   DefaultFusionChartConfig,
   LabelOrientation,
@@ -30,7 +30,7 @@ export const CONFIG = {
     animateLoading: true,
     responsiveBehavior: ResponsiveBehavior.Fill,
     minWidth: FILL_WIDGET_MIN_WIDTH,
-    customEChartDataset: DefaultEChartDatasource,
+    // customEChartDataset: DefaultEChartDatasource,
     customEChartConfig: DefaultEChartConfig,
     chartData: {
       [generateReactKey()]: DefaultEChartsBasicChartsData,

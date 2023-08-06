@@ -23,7 +23,7 @@ describe("EChartsConfigurationBuilder", () => {
       chartName: "chart name",
       chartType: "AREA_CHART",
       customEChartConfig: {},
-      customEChartDataset: {},
+      // customEChartDataset: {},
       customFusionChartConfig: { type: "type", dataSource: undefined },
       hasOnDataPointClick: true,
       isVisible: true,

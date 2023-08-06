@@ -167,134 +167,143 @@ export const LABEL_ORIENTATION_COMPATIBLE_CHARTS = [
   "COLUMN_CHART",
 ];
 
-export const DefaultCustomEChartDataset = {};
+// export const DefaultCustomEChartDataset = {};
 
-export const DefaultCustomEChartConfig = {
-  tooltip: {
-    trigger: "axis",
-    axisPointer: {
-      type: "shadow",
-    },
-  },
-  legend: {},
-  grid: {
-    left: "3%",
-    right: "4%",
-    bottom: "3%",
-    containLabel: true,
-  },
-  xAxis: [
-    {
-      type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    },
-  ],
-  yAxis: [
-    {
-      type: "value",
-    },
-  ],
-  series: [
-    {
-      name: "Direct",
-      type: "bar",
-      emphasis: {
-        focus: "series",
-      },
-      data: [320, 332, 301, 334, 390, 330, 320],
-    },
-    {
-      name: "Email",
-      type: "bar",
-      stack: "Ad",
-      emphasis: {
-        focus: "series",
-      },
-      data: [120, 132, 101, 134, 90, 230, 210],
-    },
-    {
-      name: "Union Ads",
-      type: "bar",
-      stack: "Ad",
-      emphasis: {
-        focus: "series",
-      },
-      data: [220, 182, 191, 234, 290, 330, 310],
-    },
-    {
-      name: "Video Ads",
-      type: "bar",
-      stack: "Ad",
-      emphasis: {
-        focus: "series",
-      },
-      data: [150, 232, 201, 154, 190, 330, 410],
-    },
-    {
-      name: "Search Engine",
-      type: "bar",
-      data: [862, 1018, 964, 1026, 1679, 1600, 1570],
-      emphasis: {
-        focus: "series",
-      },
-      markLine: {
-        lineStyle: {
-          type: "dashed",
-        },
-        data: [[{ type: "min" }, { type: "max" }]],
-      },
-    },
-    {
-      name: "Baidu",
-      type: "bar",
-      barWidth: 5,
-      stack: "Search Engine",
-      emphasis: {
-        focus: "series",
-      },
-      data: [620, 732, 701, 734, 1090, 1130, 1120],
-    },
-    {
-      name: "Google",
-      type: "bar",
-      stack: "Search Engine",
-      emphasis: {
-        focus: "series",
-      },
-      data: [120, 132, 101, 134, 290, 230, 220],
-    },
-    {
-      name: "Bing",
-      type: "bar",
-      stack: "Search Engine",
-      emphasis: {
-        focus: "series",
-      },
-      data: [60, 72, 71, 74, 190, 130, 110],
-    },
-    {
-      name: "Others",
-      type: "bar",
-      stack: "Search Engine",
-      emphasis: {
-        focus: "series",
-      },
-      data: [62, 82, 91, 84, 109, 110, 120],
-    },
-  ],
-};
+// export const DefaultCustomEChartConfig = {
+//   tooltip: {
+//     trigger: "axis",
+//     axisPointer: {
+//       type: "shadow",
+//     },
+//   },
+//   legend: {},
+//   grid: {
+//     left: "3%",
+//     right: "4%",
+//     bottom: "3%",
+//     containLabel: true,
+//   },
+//   xAxis: [
+//     {
+//       type: "category",
+//       data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+//     },
+//   ],
+//   yAxis: [
+//     {
+//       type: "value",
+//     },
+//   ],
+//   series: [
+//     {
+//       name: "Direct",
+//       type: "bar",
+//       emphasis: {
+//         focus: "series",
+//       },
+//       data: [320, 332, 301, 334, 390, 330, 320],
+//     },
+//     {
+//       name: "Email",
+//       type: "bar",
+//       stack: "Ad",
+//       emphasis: {
+//         focus: "series",
+//       },
+//       data: [120, 132, 101, 134, 90, 230, 210],
+//     },
+//     {
+//       name: "Union Ads",
+//       type: "bar",
+//       stack: "Ad",
+//       emphasis: {
+//         focus: "series",
+//       },
+//       data: [220, 182, 191, 234, 290, 330, 310],
+//     },
+//     {
+//       name: "Video Ads",
+//       type: "bar",
+//       stack: "Ad",
+//       emphasis: {
+//         focus: "series",
+//       },
+//       data: [150, 232, 201, 154, 190, 330, 410],
+//     },
+//     {
+//       name: "Search Engine",
+//       type: "bar",
+//       data: [862, 1018, 964, 1026, 1679, 1600, 1570],
+//       emphasis: {
+//         focus: "series",
+//       },
+//       markLine: {
+//         lineStyle: {
+//           type: "dashed",
+//         },
+//         data: [[{ type: "min" }, { type: "max" }]],
+//       },
+//     },
+//     {
+//       name: "Baidu",
+//       type: "bar",
+//       barWidth: 5,
+//       stack: "Search Engine",
+//       emphasis: {
+//         focus: "series",
+//       },
+//       data: [620, 732, 701, 734, 1090, 1130, 1120],
+//     },
+//     {
+//       name: "Google",
+//       type: "bar",
+//       stack: "Search Engine",
+//       emphasis: {
+//         focus: "series",
+//       },
+//       data: [120, 132, 101, 134, 290, 230, 220],
+//     },
+//     {
+//       name: "Bing",
+//       type: "bar",
+//       stack: "Search Engine",
+//       emphasis: {
+//         focus: "series",
+//       },
+//       data: [60, 72, 71, 74, 190, 130, 110],
+//     },
+//     {
+//       name: "Others",
+//       type: "bar",
+//       stack: "Search Engine",
+//       emphasis: {
+//         focus: "series",
+//       },
+//       data: [62, 82, 91, 84, 109, 110, 120],
+//     },
+//   ],
+// };
 
-export const DefaultEChartDatasource = {
-  source: [
-    ["product", "2012", "2013", "2014", "2015", "2016", "2017"],
-    ["Milk Tea", 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
-    ["Matcha Latte", 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
-    ["Cheese Cocoa", 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
-    ["Walnut Brownie", 25.2, 37.1, 41.2, 18, 33.9, 49.1],
-  ],
-};
+// export const DefaultEChartDatasource = {
+//   source: [
+//     ["product", "2012", "2013", "2014", "2015", "2016", "2017"],
+//     ["Milk Tea", 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+//     ["Matcha Latte", 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+//     ["Cheese Cocoa", 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+//     ["Walnut Brownie", 25.2, 37.1, 41.2, 18, 33.9, 49.1],
+//   ],
+// };
 
 export const DefaultEChartConfig = {
+  dataset: {
+    source: [
+      ["product", "2012", "2013", "2014", "2015", "2016", "2017"],
+      ["Milk Tea", 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+      ["Matcha Latte", 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+      ["Cheese Cocoa", 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+      ["Walnut Brownie", 25.2, 37.1, 41.2, 18, 33.9, 49.1],
+    ],
+  },
   legend: {},
   tooltip: {
     trigger: "axis",

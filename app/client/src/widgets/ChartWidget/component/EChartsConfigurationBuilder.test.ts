@@ -35,7 +35,7 @@ describe("EChartsConfigurationBuilder", () => {
     chartName: "chart name",
     chartType: "LINE_CHART",
     customEChartConfig: {},
-    customEChartDataset: {},
+    // customEChartDataset: {},
     customFusionChartConfig: { type: "type", dataSource: undefined },
     hasOnDataPointClick: false,
     isVisible: true,

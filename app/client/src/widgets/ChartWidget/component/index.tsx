@@ -60,7 +60,7 @@ export interface ChartComponentProps extends WidgetPositionProps {
   chartName: string;
   chartType: ChartType;
   customEChartConfig: Record<string, unknown>;
-  customEChartDataset: Record<string, unknown>;
+  // customEChartDataset: Record<string, unknown>;
   customFusionChartConfig: CustomFusionChartConfig;
   hasOnDataPointClick: boolean;
   isVisible?: boolean;
@@ -198,9 +198,9 @@ class ChartComponent extends React.Component<
   getCustomEChartOptions = () => {
     return {
       ...this.props.customEChartConfig,
-      dataset: {
-        ...this.props.customEChartDataset,
-      },
+      // dataset: {
+      //   ...this.props.customEChartDataset,
+      // },
     };
   };
 
