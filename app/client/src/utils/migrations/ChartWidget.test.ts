@@ -1,5 +1,8 @@
 import type { DSLWidget } from "widgets/constants";
-import { migrateChartWidgetLabelOrientationStaggerOption } from "./ChartWidget";
+import {
+  migrateChartWidgetLabelOrientationStaggerOption,
+  migrateDefaultValuesForCustomEChart,
+} from "./ChartWidget";
 import type { ChartWidgetProps } from "widgets/ChartWidget/widget";
 import { LabelOrientation } from "widgets/ChartWidget/constants";
 
@@ -42,5 +45,19 @@ describe("Migrate Label Orientation from type stagger to auto", () => {
     const outputChartWidgetDSL = (outputDSL.children &&
       outputDSL.children[0]) as ChartWidgetProps;
     expect(outputChartWidgetDSL.labelOrientation).toEqual("auto");
+  });
+});
+
+describe("Migrate Default Custom EChart configuration", () => {
+  it("adds echart custom chart default configuration to existing charts", () => {
+    const inputChartWidgetDSL = inputDSL.children?.[0] as ChartWidgetProps;
+    expect(inputChartWidgetDSL.customEChartConfig).not.toBeDefined();
+
+    const outputDSL = migrateDefaultValuesForCustomEChart(inputDSL);
+    const outputChartWidgetDSL = outputDSL.children?.[0] as ChartWidgetProps;
+    expect(outputChartWidgetDSL.customEChartConfig).toBeDefined();
+    expect(
+      Object.keys(outputChartWidgetDSL.customEChartConfig).length,
+    ).toBeGreaterThan(0);
   });
 });
