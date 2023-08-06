@@ -130,7 +130,10 @@ class ChartComponent extends React.Component<
   }
 
   getBasicEChartOptions = () => {
-    const chartData = EChartsDatasetBuilder.chartData(this.props);
+    const chartData = EChartsDatasetBuilder.chartData(
+      this.props.chartType,
+      this.props.chartData,
+    );
     const options = {
       ...this.echartsConfigurationBuilder.prepareEChartConfig(
         this.props,

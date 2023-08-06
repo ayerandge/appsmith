@@ -18,6 +18,7 @@ import { ChartErrorComponent } from "../component/ChartErrorComponent";
 import { syntaxErrorsFromProps } from "./SyntaxErrorsEvaluation";
 import { EmptyChartData } from "../component/EmptyChartData";
 import type { ChartType } from "../constants";
+import { EChartsDatasetBuilder } from "../component/EChartsDatasetBuilder";
 
 const ChartComponent = lazy(() =>
   retryPromise(() => import(/* webpackChunkName: "charts" */ "../component")),
@@ -37,19 +38,17 @@ export const isBasicEChart = (type: ChartType) => {
 // pass property pane label in widget errors
 export const emptyChartData = (props: ChartWidgetProps) => {
   if (props.chartType == "CUSTOM_FUSION_CHART") {
-    if (!props.customFusionChartConfig) {
-      return true;
-    } else {
-      return Object.keys(props.customFusionChartConfig).length == 0;
-    }
+    return Object.keys(props.customFusionChartConfig).length == 0;
   } else if (props.chartType == "CUSTOM_ECHART") {
-    const configEmpty = Object.keys(props.customEChartConfig).length == 0;
-    const datasetEmpty = Object.keys(props.customEChartDataset).length == 0;
-    return configEmpty && datasetEmpty;
+    return Object.keys(props.customEChartConfig).length == 0;
   } else {
-    // this has a bug for pie chart. if series 1 is empty, but series 2 isn't empty
-    for (const seriesID in props.chartData) {
-      if (props.chartData[seriesID].data.length > 0) {
+    const seriesData = EChartsDatasetBuilder.chartData(
+      props.chartType,
+      props.chartData,
+    );
+
+    for (const seriesID in seriesData) {
+      if (Object.keys(props.chartData[seriesID].data).length > 0) {
         return false;
       }
     }

@@ -50,14 +50,20 @@ describe("EChartsConfigurationBuilder", () => {
     };
 
     it("1. returns all series data if chart type is not pie", () => {
-      const output = EChartsDatasetBuilder.chartData(defaultProps);
+      const output = EChartsDatasetBuilder.chartData(
+        defaultProps.chartType,
+        defaultProps.chartData,
+      );
       expect(output).toEqual(chartData);
     });
 
     it("2. returns only the first series data if chart type is pie", () => {
       const props = JSON.parse(JSON.stringify(defaultProps));
       props.chartType = "PIE_CHART";
-      const output = EChartsDatasetBuilder.chartData(props);
+      const output = EChartsDatasetBuilder.chartData(
+        props.chartType,
+        props.chartData,
+      );
       const expectedOutput = {
         seriesID1: chartData1,
       };

@@ -53,43 +53,90 @@ describe("emptyChartData", () => {
     renderMode: RenderModes.CANVAS,
   };
 
-  describe("when chart type is Echarts", () => {
-    it("returns true chartData property is empty", () => {
-      const props = JSON.parse(JSON.stringify(defaultProps));
-      props.chartType = "LINE_CHART";
+  describe("when chart type is basic ECharts", () => {
+    const basicEChartProps = JSON.parse(JSON.stringify(defaultProps));
+    const basicEChartsType = "LINE_CHART";
+    basicEChartProps.chartType = basicEChartsType;
+
+    it("returns true if each series data is absent", () => {
+      const props = JSON.parse(JSON.stringify(basicEChartProps));
       props.chartData.seriesID1 = { data: [] };
       props.chartData.seriesID2 = { data: [] };
 
       expect(emptyChartData(props)).toEqual(true);
     });
 
-    it("returns false chartData property is not empty", () => {
-      const props = JSON.parse(JSON.stringify(defaultProps));
-      props.chartType = "LINE_CHART";
+    it("returns true if no series is present", () => {
+      const props = JSON.parse(JSON.stringify(basicEChartProps));
+      props.chartData = {};
+      expect(emptyChartData(props)).toEqual(true);
+    });
+
+    it("returns false if all series data are present", () => {
+      const props = JSON.parse(JSON.stringify(basicEChartProps));
       expect(emptyChartData(props)).toEqual(false);
     });
 
-    it("returns false chartData property if any of the series data is present", () => {
-      const props = JSON.parse(JSON.stringify(defaultProps));
-      props.chartType = "LINE_CHART";
+    it("returns false if any of the series data is present", () => {
+      const props = JSON.parse(JSON.stringify(basicEChartProps));
       props.chartData.seriesID1 = { data: [] };
       expect(emptyChartData(props)).toEqual(false);
+    });
+
+    describe("when chart type is pie chart", () => {
+      const pieChartProps = JSON.parse(JSON.stringify(defaultProps));
+      pieChartProps.chartType = "PIE_CHART";
+
+      it("returns true if first series data is empty", () => {
+        const props = JSON.parse(JSON.stringify(pieChartProps));
+        props.chartData = { seriesID1: { data: [] } };
+
+        expect(emptyChartData(props)).toEqual(true);
+      });
+
+      it("returns true if first series data is empty but second series data is present", () => {
+        const props = JSON.parse(JSON.stringify(pieChartProps));
+        props.chartData.seriesID1 = { data: [] };
+        props.chartData.seriesID2 = { data: { x: "x1", y: 2 } };
+
+        expect(emptyChartData(props)).toEqual(true);
+      });
     });
   });
 
   describe("when chart type is custom fusion charts", () => {
+    const customFusionChartProps = JSON.parse(JSON.stringify(defaultProps));
+    customFusionChartProps.chartType = "CUSTOM_FUSION_CHART";
+
     it("returns true customFusionChartConfig property is empty", () => {
-      const props = JSON.parse(JSON.stringify(defaultProps));
-      props.chartType = "CUSTOM_FUSION_CHART";
+      const props = JSON.parse(JSON.stringify(customFusionChartProps));
       props.customFusionChartConfig = {};
 
       expect(emptyChartData(props)).toEqual(true);
     });
 
     it("returns false customFusionChartConfig property is not empty", () => {
-      const props = JSON.parse(JSON.stringify(defaultProps));
-      props.chartType = "CUSTOM_FUSION_CHART";
+      const props = JSON.parse(JSON.stringify(customFusionChartProps));
       props.customFusionChartConfig = { key: "value" };
+
+      expect(emptyChartData(props)).toEqual(false);
+    });
+  });
+
+  describe("when chart type is custom echarts", () => {
+    const customEChartsProps = JSON.parse(JSON.stringify(defaultProps));
+    customEChartsProps.chartType = "CUSTOM_ECHART";
+
+    it("returns true if customEChartConfig property is empty", () => {
+      const props = JSON.parse(JSON.stringify(customEChartsProps));
+      props.customEChartConfig = {};
+
+      expect(emptyChartData(props)).toEqual(true);
+    });
+
+    it("returns false if customEChartConfig property is not empty", () => {
+      const props = JSON.parse(JSON.stringify(customEChartsProps));
+      props.customEChartConfig = { key: "value" };
 
       expect(emptyChartData(props)).toEqual(false);
     });
