@@ -41,6 +41,10 @@ export const contentConfig = [
             value: "AREA_CHART",
           },
           {
+            label: "Custom EChart",
+            value: "CUSTOM_ECHART",
+          },
+          {
             label: "Custom chart",
             value: "CUSTOM_FUSION_CHART",
           },
@@ -57,10 +61,41 @@ export const contentConfig = [
               "PIE_CHART",
               "COLUMN_CHART",
               "AREA_CHART",
+              "CUSTOM_ECHART",
               "CUSTOM_FUSION_CHART",
             ],
           },
         },
+      },
+      {
+        helpText: "Configure a custom EChart dataset",
+        placeholderText: `Custom ECharts Dataset`,
+        propertyName: "customEChartDataset",
+        label: "Custom ECharts Datasource",
+        controlType: "INPUT_TEXT",
+        isBindProperty: true,
+        isTriggerProperty: false,
+        validation: {
+          type: ValidationTypes.OBJECT,
+        },
+        hidden: (props: ChartWidgetProps) =>
+          props.chartType !== "CUSTOM_ECHART",
+        dependencies: ["chartType"],
+      },
+      {
+        helpText: "Configure a custom ECHART see docs.appsmith.com",
+        placeholderText: `Custom ECharts Configuration`,
+        propertyName: "customEChartConfig",
+        label: "Custom ECharts Configuration",
+        controlType: "INPUT_TEXT",
+        isBindProperty: true,
+        isTriggerProperty: false,
+        validation: {
+          type: ValidationTypes.OBJECT,
+        },
+        hidden: (props: ChartWidgetProps) =>
+          props.chartType !== "CUSTOM_ECHART",
+        dependencies: ["chartType"],
       },
       {
         helpText: "Configure a custom FusionChart see docs.appsmith.com",
@@ -147,7 +182,8 @@ export const contentConfig = [
         isBindProperty: false,
         isTriggerProperty: false,
         hidden: (props: ChartWidgetProps) =>
-          props.chartType === "CUSTOM_FUSION_CHART",
+          props.chartType === "CUSTOM_FUSION_CHART" ||
+          props.chartType === "CUSTOM_ECHART",
         dependencies: ["chartType"],
         children: [
           {
@@ -244,7 +280,9 @@ export const contentConfig = [
         isBindProperty: false,
         isTriggerProperty: false,
         hidden: (x: ChartWidgetProps) =>
-          x.chartType === "CUSTOM_FUSION_CHART" || x.chartType === "PIE_CHART",
+          x.chartType === "CUSTOM_FUSION_CHART" ||
+          x.chartType === "PIE_CHART" ||
+          x.chartType == "CUSTOM_ECHART",
         dependencies: ["chartType"],
       },
     ],
@@ -260,6 +298,7 @@ export const contentConfig = [
         isBindProperty: true,
         isTriggerProperty: false,
         validation: { type: ValidationTypes.BOOLEAN },
+        hidden: (x: any) => x.chartType == "CUSTOM_ECHART",
       },
       {
         helpText: "Specifies the label of the x-axis",
@@ -270,7 +309,9 @@ export const contentConfig = [
         isBindProperty: true,
         isTriggerProperty: false,
         validation: { type: ValidationTypes.TEXT },
-        hidden: (x: any) => x.chartType === "CUSTOM_FUSION_CHART",
+        hidden: (x: any) =>
+          x.chartType === "CUSTOM_FUSION_CHART" ||
+          x.chartType == "CUSTOM_ECHART",
         dependencies: ["chartType"],
       },
       {
@@ -282,7 +323,9 @@ export const contentConfig = [
         isBindProperty: true,
         isTriggerProperty: false,
         validation: { type: ValidationTypes.TEXT },
-        hidden: (x: any) => x.chartType === "CUSTOM_FUSION_CHART",
+        hidden: (x: any) =>
+          x.chartType === "CUSTOM_FUSION_CHART" ||
+          x.chartType == "CUSTOM_ECHART",
         dependencies: ["chartType"],
       },
       {

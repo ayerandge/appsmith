@@ -22,6 +22,8 @@ describe("EChartsConfigurationBuilder", () => {
       chartData: chartData,
       chartName: "chart name",
       chartType: "AREA_CHART",
+      customEChartConfig: {},
+      customEChartDataset: {},
       customFusionChartConfig: { type: "type", dataSource: undefined },
       hasOnDataPointClick: true,
       isVisible: true,

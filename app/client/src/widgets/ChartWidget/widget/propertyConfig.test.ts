@@ -74,22 +74,53 @@ describe("Validate Chart Widget's property config", () => {
   it("Validates config when chartType is CUSTOM_FUSION_CHART", () => {
     const hiddenFn = get(
       config,
-      "[0].children.[1].hidden", // propertyName: "customFusionChartConfig"
+      "[0].children.[3].hidden", // propertyName: "customFusionChartConfig"
     ) as unknown as (props: any) => boolean;
     let result = true;
     if (hiddenFn) result = hiddenFn({ chartType: "CUSTOM_FUSION_CHART" });
     expect(result).toBeFalsy();
   });
 
+  it("Validates config when chartType is CUSTOM_ECHART", () => {
+    const hiddenFns = [
+      get(
+        config,
+        "[0].children.[1].hidden", // propertyName: "customEChartsDatasource"
+        get(config, "[0].children.[2].hidden"), // propertyName: "customEChartsConfig"
+      ),
+    ] as unknown as ((props: any) => boolean)[];
+
+    hiddenFns.forEach((fn) => {
+      const result = fn({ chartType: "CUSTOM_ECHART" });
+      expect(result).toBeFalsy();
+    });
+  });
+
   it("Validates that sections are hidden when chartType is CUSTOM_FUSION_CHART", () => {
     const hiddenFns = [
-      get(config, "[0].children.[2].hidden"), // propertyName: "chartData"
+      get(config, "[0].children.[1].hidden"), // propertyName: "customEChartsDatasource"
+      get(config, "[0].children.[2].hidden"), // propertyName: "customEChartsConfig"
+      get(config, "[0].children.[4].hidden"), // propertyName: "chartData"
       get(config, "[2].children.[1].hidden"), // propertyName: "xAxisName"
       get(config, "[2].children.[2].hidden"), // propertyName: "yAxisName"
       get(config, "[2].children.[3].hidden"), // propertyName: "labelOrientation",
     ] as unknown as ((props: any) => boolean)[];
     hiddenFns.forEach((fn) => {
       const result = fn({ chartType: "CUSTOM_FUSION_CHART" });
+      expect(result).toBeTruthy();
+    });
+  });
+
+  it("Validates that sections are hidden when chartType is CUSTOM_ECHART", () => {
+    const hiddenFns = [
+      get(config, "[0].children.[3].hidden"), // propertyName: "customFusionChartConfig"
+      get(config, "[0].children.[4].hidden"), // propertyName: "chartData"
+      get(config, "[2].children.[1].hidden"), // propertyName: "xAxisName"
+      get(config, "[2].children.[2].hidden"), // propertyName: "yAxisName"
+      get(config, "[2].children.[3].hidden"), // propertyName: "labelOrientation",
+    ] as unknown as ((props: any) => boolean)[];
+    hiddenFns.forEach((fn) => {
+      const result = fn({ chartType: "CUSTOM_ECHART" });
       expect(result).toBeTruthy();
     });
   });

@@ -25,6 +25,8 @@ describe("emptyChartData", () => {
     chartName: "chart name",
     type: "CHART_WIDGET",
     chartType: "AREA_CHART",
+    customEChartConfig: {},
+    customEChartDataset: {},
     customFusionChartConfig: { type: "type", dataSource: undefined },
     hasOnDataPointClick: true,
     isVisible: true,
