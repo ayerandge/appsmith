@@ -39,8 +39,8 @@ const generateWidget = memoize(function getWidgetComponent(
 });
 
 export const registerWidget = (Widget: typeof BaseWidget) => {
-  // in Phase two, the maps on the widget facotry will be elimated and
-  // widget class will be called to fet the configs and properties.
+  // in Phase two, the maps on the widget factory will be elimated and
+  // widget class will be called to fetch the configs and properties.
   const config = {
     ...Widget.getConfig(),
     ...Widget.getFeatures(),
