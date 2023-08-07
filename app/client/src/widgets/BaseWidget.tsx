@@ -32,7 +32,7 @@ import {
   WIDGET_PADDING,
 } from "constants/WidgetConstants";
 import { ENTITY_TYPE } from "entities/AppsmithConsole";
-import type { Stylesheet } from "entities/AppTheming";
+import type { SetterConfig, Stylesheet } from "entities/AppTheming";
 import { get, isFunction, memoize } from "lodash";
 import type { Context, ReactNode, RefObject } from "react";
 import React, { Component } from "react";
@@ -96,6 +96,26 @@ abstract class BaseWidget<
 > extends Component<T, K> {
   static contextType = EditorContext;
   context!: React.ContextType<Context<EditorContextType<TCache>>>;
+
+  static getDefaults(): any {
+    return {};
+  }
+
+  static getConfig(): any {
+    return {};
+  }
+
+  static getMethods(): any {
+    return {};
+  }
+
+  static getAutoLayoutConfig(): any {
+    return null;
+  }
+
+  static getSetterConfig(): SetterConfig | null {
+    return null;
+  }
 
   static getPropertyPaneConfig(): PropertyPaneConfig[] {
     return [];

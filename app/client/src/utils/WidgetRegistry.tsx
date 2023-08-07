@@ -11,9 +11,7 @@ import ButtonGroupWidget, {
 import ButtonWidget, {
   CONFIG as BUTTON_WIDGET_CONFIG,
 } from "widgets/ButtonWidget";
-import SelectWidget, {
-  CONFIG as SELECT_WIDGET_CONFIG,
-} from "widgets/SelectWidget";
+import SelectWidget from "widgets/SelectWidget";
 import CameraWidget, {
   CONFIG as CAMERA_WIDGET_CONFIG,
 } from "widgets/CameraWidget";
@@ -207,7 +205,7 @@ export const ALL_WIDGETS_AND_CONFIG: [any, WidgetConfiguration][] = [
   [ProgressBarWidget, PROGRESSBAR_WIDGET_CONFIG],
   [CameraWidget, CAMERA_WIDGET_CONFIG],
   [MapChartWidget, MAP_CHART_WIDGET_CONFIG],
-  [SelectWidget, SELECT_WIDGET_CONFIG],
+  SelectWidget,
   [MultiSelectWidgetV2, MULTI_SELECT_WIDGET_V2_CONFIG],
   [InputWidgetV2, INPUT_WIDGET_V2_CONFIG],
   [PhoneInputWidget, PHONE_INPUT_WIDGET_V2_CONFIG],
@@ -243,7 +241,7 @@ export const ALL_WIDGETS_AND_CONFIG: [any, WidgetConfiguration][] = [
 export const registerWidgets = () => {
   const start = performance.now();
   for (const widget of ALL_WIDGETS_AND_CONFIG) {
-    registerWidget(widget[0], widget[1] as WidgetConfiguration);
+    registerWidget(widget);
   }
 
   log.debug("Widget registration took: ", performance.now() - start, "ms");

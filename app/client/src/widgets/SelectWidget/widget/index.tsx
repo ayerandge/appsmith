@@ -36,10 +36,109 @@ import {
   getLabelValueKeyOptions,
   valueKeyValidation,
 } from "./propertyUtils";
+import { DynamicHeight } from "utils/WidgetFeatures";
+import { WIDGET_TAGS } from "constants/WidgetConstants";
+import { FILL_WIDGET_MIN_WIDTH } from "constants/minWidthConstants";
+import { ResponsiveBehavior } from "utils/autoLayout/constants";
+import type { SnipingModeProperty, PropertyUpdates } from "widgets/constants";
+
+import IconSVG from "./icon.svg";
 
 class SelectWidget extends BaseWidget<SelectWidgetProps, WidgetState> {
   constructor(props: SelectWidgetProps) {
     super(props);
+  }
+
+  static getConfig() {
+    return {
+      name: "Select",
+      iconSVG: IconSVG,
+      type: SelectWidget.getWidgetType(),
+      tags: [WIDGET_TAGS.SUGGESTED_WIDGETS, WIDGET_TAGS.SELECT],
+      needsMeta: true,
+      searchTags: ["dropdown"],
+      features: {
+        dynamicHeight: {
+          sectionIndex: 4,
+          defaultValue: DynamicHeight.FIXED,
+          active: true,
+        },
+      },
+    };
+  }
+
+  static getDefaults() {
+    return {
+      rows: 7,
+      columns: 20,
+      placeholderText: "Select option",
+      labelText: "Label",
+      labelPosition: LabelPosition.Top,
+      labelAlignment: Alignment.LEFT,
+      labelWidth: 5,
+      sourceData: [
+        { name: "Blue", code: "BLUE" },
+        { name: "Green", code: "GREEN" },
+        { name: "Red", code: "RED" },
+      ],
+      optionLabel: "name",
+      optionValue: "code",
+      serverSideFiltering: false,
+      widgetName: "Select",
+      defaultOptionValue: "GREEN",
+      version: 1,
+      isFilterable: true,
+      isRequired: false,
+      isDisabled: false,
+      animateLoading: true,
+      labelTextSize: "0.875rem",
+      responsiveBehavior: ResponsiveBehavior.Fill,
+      minWidth: FILL_WIDGET_MIN_WIDTH,
+    };
+  }
+
+  static getMethods() {
+    return {
+      getSnipingModeUpdates: (
+        propValueMap: SnipingModeProperty,
+      ): PropertyUpdates[] => {
+        return [
+          {
+            propertyPath: "sourceData",
+            propertyValue: propValueMap.data,
+            isDynamicPropertyPath: true,
+          },
+        ];
+      },
+    };
+  }
+
+  static getAutoLayoutConfig() {
+    return {
+      disabledPropsDefaults: {
+        labelPosition: LabelPosition.Top,
+        labelTextSize: "0.875rem",
+      },
+      defaults: {
+        rows: 6.6,
+      },
+      autoDimension: {
+        height: true,
+      },
+      widgetSize: [
+        {
+          viewportMinWidth: 0,
+          configuration: () => {
+            return {
+              minWidth: "120px",
+            };
+          },
+        },
+      ],
+      disableResizeHandles: {
+        vertical: true,
+      },
+    };
   }
 
   static getAutocompleteDefinitions(): AutocompletionDefinitions {

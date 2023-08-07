@@ -38,10 +38,29 @@ const generateWidget = memoize(function getWidgetComponent(
   );
 });
 
-export const registerWidget = (
-  Widget: typeof BaseWidget,
-  config: WidgetConfiguration,
-) => {
+export const registerWidget = (Widget: typeof BaseWidget) => {
+  const config = {
+    ...Widget.getConfig(),
+    ...Widget.getDefaults(),
+    properties: {
+      derived: Widget.getDerivedPropertiesMap(),
+      default: Widget.getDefaultPropertiesMap(),
+      meta: Widget.getMetaPropertiesMap(),
+      config: Widget.getPropertyPaneConfig(),
+      contentConfig: Widget.getPropertyPaneContentConfig(),
+      styleConfig: Widget.getPropertyPaneStyleConfig(),
+      stylesheetConfig: Widget.getStylesheetConfig(),
+      autocompleteDefinitions: Widget.getAutocompleteDefinitions(),
+      setterConfig: Widget.getSetterConfig(),
+    },
+    methods: {
+      ...Widget.getMethods(),
+    },
+    autoLayout: {
+      ...Widget.getAutoLayoutConfig(),
+    },
+  };
+
   const ProfiledWidget = generateWidget(
     Widget,
     !!config.needsMeta,
