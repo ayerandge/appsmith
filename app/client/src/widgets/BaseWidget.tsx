@@ -105,6 +105,10 @@ abstract class BaseWidget<
     return {};
   }
 
+  static getFeatures(): any {
+    return null;
+  }
+
   static getMethods(): any {
     return {};
   }

@@ -57,12 +57,15 @@ class SelectWidget extends BaseWidget<SelectWidgetProps, WidgetState> {
       tags: [WIDGET_TAGS.SUGGESTED_WIDGETS, WIDGET_TAGS.SELECT],
       needsMeta: true,
       searchTags: ["dropdown"],
-      features: {
-        dynamicHeight: {
-          sectionIndex: 4,
-          defaultValue: DynamicHeight.FIXED,
-          active: true,
-        },
+    };
+  }
+
+  static getFeatures() {
+    return {
+      dynamicHeight: {
+        sectionIndex: 4,
+        defaultValue: DynamicHeight.FIXED,
+        active: true,
       },
     };
   }
